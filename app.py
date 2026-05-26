@@ -152,12 +152,11 @@ def calcular_emissoes(dados):
 
     if emissao_energia > 1000:
         dicas.append(
-            "Reduza o consumo de energia e utilize aparelhos eficientes."
         )
 
     if emissao_gas > 500:
         dicas.append(
-            "Tente reduzir o consumo de gás utilizando equipamentos mais econômicos."
+            "Tente reduzir o consumo de gás utilizando equipamentos mais economicos."
         )
 
     if emissao_residuos > 500:
