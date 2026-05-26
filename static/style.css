@@ -1,167 +1,339 @@
-/* Estilos para o vídeo de fundo */
+/* =========================
+   BODY
+========================= */
+
+body {
+
+    margin: 0;
+
+    padding: 0;
+
+    font-family: 'Segoe UI', sans-serif;
+
+    color: white;
+
+    overflow-x: hidden;
+
+    background: #07150c;
+}
+
+/* =========================
+   VÍDEO
+========================= */
+
 .video-background {
+
     position: fixed;
+
     top: 0;
+
     left: 0;
+
     width: 100%;
+
     height: 100%;
+
     overflow: hidden;
-    z-index: -1; /* Coloca o vídeo atrás dos outros elementos */
+
+    z-index: -2;
 }
 
 .video-background video {
-    position: absolute;
-    top: 0;
-    left: 0;
+
     width: 100%;
+
     height: 100%;
-    object-fit: cover; /* Preenche toda a tela com o vídeo */
+
+    object-fit: cover;
+
+    filter: brightness(90%);
 }
 
-/* Estilos para o cabeçalho */
-header {
-    background-color: #356421; /* Verde escuro */
-    padding: 10px 0;
+/* =========================
+   OVERLAY
+========================= */
+
+.overlay {
+
+    min-height: 100vh;
+
+    background: transparent;
 }
 
-header nav ul {
-    list-style: none;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    margin: 0;
-    padding: 0;
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+
+    background:
+        rgba(6, 30, 14, 0.78) !important;
+
+    backdrop-filter: blur(12px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 4px 15px rgba(0,0,0,0.25);
 }
 
-header nav ul li {
-    margin: 0 15px;
-}
+.navbar-brand {
 
-header nav ul li a {
-    color: white;
-    text-decoration: none;
+    color: #86efac !important;
+
+    font-size: 1.5rem;
+
     font-weight: bold;
-    font-size: 1.2em;
 }
 
-/* Estilos para o footer */
-footer {
-    background-color: #137634; /* Mesmo tom do cabeçalho */
-    text-align: center;
-    padding: 20px;
-    font-size: 14px;
-    color: #ffffff; /* Texto em branco */
+.nav-link {
+
+    color: #f8fafc !important;
+
+    transition: 0.3s;
+}
+
+.nav-link:hover {
+
+    color: #4ade80 !important;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.card-custom {
+
+    background:
+        rgba(8, 35, 18, 0.72);
+
+    backdrop-filter: blur(14px);
+
+    border-radius: 24px;
+
+    border:
+        1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 8px 32px rgba(0,0,0,0.35);
+
+    transition: 0.3s;
+}
+
+.card-custom:hover {
+
+    transform: translateY(-4px);
+
+    border:
+        1px solid rgba(74,222,128,0.30);
+
+    box-shadow:
+        0 10px 28px rgba(0,0,0,0.4);
+}
+
+/* =========================
+   TÍTULOS
+========================= */
+
+h1 {
+
+    font-size: 2.8rem;
+
+    font-weight: bold;
+
+    color: #ffffff;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.3);
+}
+
+h2 {
+
+    color: #ffffff;
+}
+
+/* =========================
+   INPUTS
+========================= */
+
+.form-control,
+.form-select {
+
+    background:
+        rgba(255,255,255,0.06);
+
+    border:
+        1px solid rgba(255,255,255,0.08);
+
+    color: white;
+
+    border-radius: 14px;
+
+    padding: 12px;
+
+    transition: 0.3s;
+}
+
+.form-control::placeholder {
+
+    color: #cbd5e1;
+}
+
+.form-control:focus,
+.form-select:focus {
+
+    background:
+        rgba(255,255,255,0.1);
+
+    color: white;
+
+    border: 1px solid #4ade80;
+
+    box-shadow:
+        0 0 12px rgba(74,222,128,0.25);
+}
+
+/* =========================
+   SELECT
+========================= */
+
+select option {
+
+    background: #0b2412;
+
+    color: white;
+}
+
+/* =========================
+   LABELS
+========================= */
+
+.form-label {
+
+    color: #f1f5f9;
+
+    font-weight: 600;
+}
+
+/* =========================
+   BOTÃO
+========================= */
+
+.btn-success {
+
+    background: #22c55e;
+
+    border: none;
+
+    border-radius: 14px;
+
+    padding: 14px 35px;
+
+    font-size: 1.1rem;
+
+    font-weight: bold;
+
+    transition: 0.3s;
+}
+
+.btn-success:hover {
+
+    background: #16a34a;
+
+    transform: scale(1.03);
+
+    box-shadow:
+        0 0 18px rgba(74,222,128,0.35);
+}
+
+/* =========================
+   ALERTAS
+========================= */
+
+.alert {
+
+    border: none;
+
+    border-radius: 16px;
+}
+
+.alert-success {
+
+    background:
+        rgba(34,197,94,0.15);
+
+    color: #dcfce7;
+}
+
+.alert-info {
+
+    background:
+        rgba(16,185,129,0.15);
+
+    color: #d1fae5;
+}
+
+/* =========================
+   RESULTADOS
+========================= */
+
+#resultado,
+#dicas {
+
     margin-top: 20px;
 }
 
-/* Estilo do título principal */
-h1 {
-    text-align: center;
-    color: #d5ffce; /* Verde escuro */
-    font-size: 2em;
-    margin-top: 15px;
+/* =========================
+   GRÁFICOS
+========================= */
+
+canvas {
+
+    background: rgba(255,255,255,0.95);
+
+    border-radius: 16px;
+
+    padding: 10px;
 }
 
-/* Estilos gerais para o formulário */
-.container {
-    max-width: 600px;
-    margin: 20px auto;
-    padding: 20px;
-    background-color: #0d3312; /* Fundo claro e semi-transparente */
-    color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px  rgba(0, 0, 0, 0.1);
-    position: relative;
-    z-index: 1;
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+
+    background:
+        rgba(5, 20, 10, 0.82);
+
+    backdrop-filter: blur(10px);
+
+    color: #cbd5e1;
+
+    border-top:
+        1px solid rgba(255,255,255,0.06);
+
+    padding: 18px;
 }
 
-label {
-    font-weight: bold;
-    color: #e0e0e0;
-    display: block;
-    font-size: 1.1em;
-    margin: 8px 0 4px;
-    text-align: left;
-}
-input{
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    color: #000000;
-    background-color: #929292;
-    border: 1px solid #929292;
-    border-radius: 5px;
-}
+/* =========================
+   RESPONSIVIDADE
+========================= */
 
-input[type="number"],
-select {
-    width: 100%;
-    padding: 8px;
-    margin-bottom: 10px;
-    color: #000000;
-    background-color: #929292;
-    border: 1px solid #929292;
-    border-radius: 5px;
-}
-
-/* Estilos para o botão */
-button {
-    background-color: #2a9d38; /* Verde para o botão */
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-button:hover {
-    background-color: #000000; /* Preto para destaque */
-}
-
-/* Estilos para os resultados e dicas */
-.result, .tips {
-    margin-top: 15px;
-    padding: 15px;
-    background-color: #f0f9f4;
-    border-left: 5px solid #289531; /* Verde mais escuro para contraste */
-    color: #333;
-    font-size: 1em;
-    border-radius: 5px;
-}
-
-.result h3, .tips h3 {
-    color: #205e19; /* Cor para os títulos dentro dos resultados e dicas */
-    font-weight: bold;
-    margin-bottom: 8px;
-}
-
-.result p, .tips p {
-    margin: 5px 0;
-    line-height: 1.5;
-}
-
-/* Ajustes para melhorar a visualização em telas menores */
 @media (max-width: 768px) {
-    header nav ul {
-        flex-direction: column;
-    }
-
-    .container {
-        width: 90%;
-    }
 
     h1 {
-        font-size: 1.8em;
+
+        font-size: 2rem;
     }
 
-    button {
-        font-size: 0.9em;
-        padding: 8px 16px;
+    .btn-success {
+
+        width: 100%;
     }
 
-    .result, .tips {
-        font-size: 0.9em;
+    .card-custom {
+
+        padding: 20px !important;
     }
 }

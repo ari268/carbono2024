@@ -1,116 +1,251 @@
-/* Estilo para o layout básico */
+/* =========================
+   CONFIGURAÇÃO GERAL
+========================= */
+
 body {
-    font-family: Arial, sans-serif;
-    line-height: 1.6;
+
+    font-family: 'Segoe UI', sans-serif;
+
     margin: 0;
+
     padding: 0;
-    background-color: #f4f9f4; /* tom suave de verde claro */
+
+    color: white;
+
+    background: linear-gradient(
+        135deg,
+        #07150c,
+        #0c2b18,
+        #14532d
+    );
+
+    min-height: 100vh;
 }
 
-header {
-    background-color:#356421; /* verde escuro */
-    padding: 10px 0;
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar {
+
+    background:
+        rgba(6, 24, 13, 0.72) !important;
+
+    backdrop-filter: blur(12px);
+
+    border-bottom:
+        1px solid rgba(255,255,255,0.06);
+
+    box-shadow:
+        0 4px 18px rgba(0,0,0,0.25);
 }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-    display: flex;
-    justify-content:center;
-    margin: 0;
-}
+.navbar-brand {
 
-header nav ul li {
-    margin: 0 15px;
-}
+    color: #86efac !important;
 
-header nav ul li a {
-    color: #fff;
-    text-decoration: none;
     font-weight: bold;
-    font-size: 1.1em;
+
+    font-size: 1.4rem;
 }
 
-header nav ul li a:hover {
-    color: #1a3d1b; /* verde claro */
+.nav-link {
+
+    color: #f0fdf4 !important;
+
+    transition: 0.3s;
 }
 
-/* Container principal */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px;
+.nav-link:hover {
+
+    color: #4ade80 !important;
 }
 
-/* Estilo para o título principal */
-#como-funciona {
-    font-size: 2em;
+/* =========================
+   HERO SECTION
+========================= */
+
+.hero {
+
+    padding: 80px 20px;
+
     text-align: center;
-    color: #1b4332; /* verde mais escuro */
-    margin-bottom: 30px;
 }
 
-/* Estilo para linhas e colunas */
-.row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
+.hero h1 {
+
+    font-size: 3rem;
+
+    font-weight: bold;
+
+    margin-bottom: 20px;
+
+    color: #f0fdf4;
+
+    text-shadow:
+        0 2px 10px rgba(0,0,0,0.4);
 }
 
-.column {
-    flex: 1;
-    min-width: 300px;
-    padding: 20px;
-    background-color: #ffffff; /* fundo branco para contraste */
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px #0000001a;
+.hero p {
+
+    font-size: 1.15rem;
+
+    max-width: 800px;
+
+    margin: auto;
+
+    color: #dcfce7;
+
+    line-height: 1.8;
 }
 
-/* Título das seções */
-.titulo-caixa {
-    font-size: 1.5em;
-    text-align: center;
-    color: #1f591b; /* verde médio */
-    margin-bottom: 10px;
+/* =========================
+   CARDS
+========================= */
+
+.card-custom {
+
+    background:
+        rgba(10, 35, 18, 0.55);
+
+    backdrop-filter: blur(14px);
+
+    border-radius: 24px;
+
+    border:
+        1px solid rgba(134,239,172,0.08);
+
+    transition: all 0.3s ease;
+
+    color: white;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 28px rgba(0,0,0,0.28);
 }
 
-/* Estilo para o parágrafo */
-p {
-    font-size: 1em;
-    color: #111010;
-    margin-top: 0;
+.card-custom:hover {
+
+    transform: translateY(-6px);
+
+    border:
+        1px solid rgba(134,239,172,0.22);
+
+    box-shadow:
+        0 14px 35px rgba(0,0,0,0.38);
 }
 
-/* Imagem */
-#img {
-    text-align: center;
-    margin-top: 15px;
+/* =========================
+   IMAGENS
+========================= */
+
+.card-custom img {
+
+    width: 100%;
+
+    height: 360px;
+
+    object-fit: contain;
+
+    background:
+        rgba(255,255,255,0.03);
+
+    padding: 15px;
+
+    border-radius: 18px;
+
+    transition: 0.3s;
 }
 
-#img img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 8px;
+.card-custom img:hover {
+
+    transform: scale(1.01);
 }
 
-/* Rodapé */
+/* =========================
+   TÍTULOS
+========================= */
+
+.card-custom h2 {
+
+    font-size: 1.8rem;
+
+    margin-bottom: 15px;
+
+    color: #bbf7d0;
+
+    font-weight: bold;
+}
+
+/* =========================
+   TEXTOS
+========================= */
+
+.card-custom p {
+
+    color: #ecfdf5;
+
+    line-height: 1.9;
+
+    font-size: 1rem;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 footer {
+
+    background:
+        rgba(5, 20, 10, 0.72);
+
+    backdrop-filter: blur(12px);
+
+    color: white;
+
+    margin-top: 70px;
+
+    padding: 22px 0;
+
     text-align: center;
-    background-color:#356421; /* verde escuro */
-    padding: 10px 0; /* verde escuro */
-    padding: 10px 0;
-    color: #f4f9f4; 
-    padding: 10px 0;
-    font-size: 0.9em;
+
+    border-top:
+        1px solid rgba(255,255,255,0.05);
 }
 
 footer p {
+
     margin: 0;
+
+    color: #d1fae5;
+
+    font-size: 0.95rem;
 }
 
-/* Responsividade */
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
 @media (max-width: 768px) {
-    .row {
-        flex-direction: column;
+
+    .hero {
+
+        padding: 50px 15px;
+    }
+
+    .hero h1 {
+
+        font-size: 2rem;
+    }
+
+    .hero p {
+
+        font-size: 1rem;
+    }
+
+    .card-custom img {
+
+        height: 230px;
     }
 }

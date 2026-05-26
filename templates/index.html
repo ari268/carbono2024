@@ -1,73 +1,414 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculadora de Carbono</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a>Ferramenta de cálculo de emissões de Gases do Efeito Estufa (GEE) - calcule sua pegada de carbono!</a></li>
-                <li><a href="/como-funciona">Sobre a calculadora</a></li>
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Vídeo como fundo -->
+    <title>Calculadora de Carbono</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <!-- Vídeo -->
     <div class="video-background">
         <video autoplay muted loop>
-            <source src="/static/videos/148042-793525159_tiny.mp4" type="video/mp4">
-            Seu navegador não suporta a tag de vídeo.
+            <source src="{{ url_for('static', filename='videos/148042-793525159_tiny.mp4') }}"
+                type="video/mp4">
         </video>
     </div>
-    
-    <!-- Conteúdo principal -->
-    <div class="container">
-        <h1>Calculadora de Emissões de Carbono</h1>
-        <form id="carbonForm">
-            <label>Distância média percorrida por mês (km):</label>
-            <input type="number" id="distanciaKm" required><br>
-            
-            <label>Tipo de transporte:</label>
-            <select id="tipoTransporte">
-                <option value="carro">Carro</option>
-                <option value="moto">Moto</option>
-                <option value="onibus">Ônibus</option>
-                <option value="bicicleta">Bicicleta</option>
-                <option value="metro">Metro</option>
-                <option value="a pe">A pé</option>
-            </select><br>
 
-            <label>Consumo mensal de energia elétrica (kWh):</label>
-            <input type="number" id="consumoKwh" required><br>
-            
-            <label>Consumo mensal de gás natural (m³):</label>
-            <input type="number" id="consumoGas" required><br>
-            
-            <label>Quantidade média mensal de resíduos sólidos (kg):</label>
-            <input type="number" id="quantidadeResiduos" required><br>
-            
-            <!-- Novos campos adicionados -->
-            <label>Quantidade de árvores plantadas:</label>
-            <input type="number" id="arvoresPlantadas" required><br>
-            
-            <label>Consumo de energia renovável (kWh):</label>
-            <input type="number" id="energiaRenovavel" required><br>
-            
-            <button type="button" onclick="calcularCarbono()">Calcular Emissões</button>
-        </form>
-        
-        <div id="resultado" class="result"></div>
-        <div id="dicas" class="tips"></div>
+    <div class="overlay">
+
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+            <div class="container">
+
+                <a class="navbar-brand fw-bold" href="#">
+                    🌎 Calculadora de Carbono
+                </a>
+
+                <button class="navbar-toggler"
+                    type="button"
+                    data-bs-toggle="collapse"
+                    data-bs-target="#navbarNav">
+
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse"
+                    id="navbarNav">
+
+                    <ul class="navbar-nav ms-auto">
+
+                        <li class="nav-item">
+                            <a class="nav-link"
+                                href="/como-funciona">
+                                Sobre a Calculadora
+                            </a>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+
+        <!-- Conteúdo -->
+        <div class="container py-5">
+
+            <div class="row justify-content-center">
+
+                <div class="col-lg-10">
+
+                    <div class="card card-custom p-4 shadow-lg">
+
+                        <h1 class="text-center mb-4">
+                            Calculadora de Emissões de Carbono
+                        </h1>
+
+                        <form id="carbonForm">
+
+                            <div class="row">
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Distância média por mês (km)
+                                    </label>
+
+                                    <input type="number"
+                                        class="form-control"
+                                        id="distanciaKm"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Tipo de Transporte
+                                    </label>
+
+                                    <select class="form-select"
+                                        id="tipoTransporte">
+
+                                        <option value="carro">Carro</option>
+                                        <option value="moto">Moto</option>
+                                        <option value="onibus">Ônibus</option>
+                                        <option value="metro">Metrô</option>
+                                        <option value="bicicleta">Bicicleta</option>
+                                        <option value="a pe">A pé</option>
+                                        <option value="carro_eletrico">
+                                            Carro Elétrico
+                                        </option>
+
+                                    </select>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Consumo mensal de energia (kWh)
+                                    </label>
+
+                                    <input type="number"
+                                        class="form-control"
+                                        id="consumoKwh"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Consumo mensal de gás (m³)
+                                    </label>
+
+                                    <input type="number"
+                                        class="form-control"
+                                        id="consumoGas"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Resíduos sólidos mensais (kg)
+                                    </label>
+
+                                    <input type="number"
+                                        class="form-control"
+                                        id="quantidadeResiduos"
+                                        required>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    <label class="form-label">
+                                        Árvores Plantadas
+                                    </label>
+
+                                    <input type="number"
+                                        class="form-control"
+                                        id="arvoresPlantadas"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12 mb-4">
+                                    <label class="form-label">
+                                        Energia Renovável (kWh)
+                                    </label>
+
+                                    <input type="number"
+                                        class="form-control"
+                                        id="energiaRenovavel"
+                                        required>
+                                </div>
+
+                            </div>
+
+                            <div class="text-center">
+
+                                <button type="button"
+                                    class="btn btn-success btn-lg px-5"
+                                    onclick="calcularCarbono()">
+
+                                    Calcular Emissões
+
+                                </button>
+
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Resultado -->
+            <div class="row justify-content-center mt-5">
+
+                <div class="col-lg-10">
+
+                    <div class="card card-custom p-4 shadow-lg">
+
+                        <h2 class="mb-4 text-center">
+                            Resultado
+                        </h2>
+
+                        <div id="resultado"></div>
+
+                        <div id="dicas" class="mt-4"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Gráficos -->
+            <div class="row mt-5">
+
+                <div class="col-lg-6 mb-4">
+
+                    <div class="card p-3">
+
+                        <h4 class="text-dark text-center">
+                            Emissões
+                        </h4>
+
+                        <canvas id="graficoEmissoes"></canvas>
+
+                    </div>
+
+                </div>
+
+                <div class="col-lg-6 mb-4">
+
+                    <div class="card p-3">
+
+                        <h4 class="text-dark text-center">
+                            Créditos de Carbono
+                        </h4>
+
+                        <canvas id="graficoCreditos"></canvas>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="bg-dark text-center py-3 mt-5">
+
+            <p class="mb-0">
+                © 2025 Calculadora de Carbono
+            </p>
+
+        </footer>
+
     </div>
 
-    <footer>
-        <h3>&copy;2024 Calculadora De Carbono</h3>
-    </footer>
+    <!-- Bootstrap -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
-    <script src="/static/script.js"></script>
+    <script>
+
+        let grafico1;
+        let grafico2;
+
+        async function calcularCarbono() {
+
+            const dados = {
+
+                distancia_km: document.getElementById("distanciaKm").value,
+
+                tipo_transporte: document.getElementById("tipoTransporte").value,
+
+                consumo_kwh: document.getElementById("consumoKwh").value,
+
+                consumo_gas: document.getElementById("consumoGas").value,
+
+                quantidade_residuos:
+                    document.getElementById("quantidadeResiduos").value,
+
+                arvores_plantadas:
+                    document.getElementById("arvoresPlantadas").value,
+
+                energia_renovavel:
+                    document.getElementById("energiaRenovavel").value
+            };
+
+            const response = await fetch("/calcular", {
+
+                method: "POST",
+
+                headers: {
+                    "Content-Type": "application/json"
+                },
+
+                body: JSON.stringify(dados)
+            });
+
+            const resultado = await response.json();
+
+            // Resultado
+            document.getElementById("resultado").innerHTML = `
+
+                <div class="alert alert-success">
+
+                    <h4>Resultados</h4>
+
+                    <p><strong>Emissão Total:</strong>
+                    ${resultado.emissao_total} kg CO₂/ano</p>
+
+                    <p><strong>Créditos Totais:</strong>
+                    ${resultado.credito_total} kg CO₂</p>
+
+                    <p><strong>Emissão Líquida:</strong>
+                    ${resultado.emissao_liquida} kg CO₂</p>
+
+                    <p><strong>Árvores Necessárias:</strong>
+                    ${resultado.arvores_necessarias}</p>
+
+                    <p><strong>Custo de Compensação:</strong>
+                    R$ ${resultado.custo_compensacao_real}</p>
+
+                    <p><strong>Classificação:</strong>
+                    ${resultado.classificacao}</p>
+
+                </div>
+            `;
+
+            // Dicas
+            let dicasHTML = `
+                <div class="alert alert-info">
+                    <h5>Dicas Sustentáveis</h5>
+                    <ul>
+            `;
+
+            resultado.dicas.forEach(dica => {
+                dicasHTML += `<li>${dica}</li>`;
+            });
+
+            dicasHTML += `
+                    </ul>
+                </div>
+            `;
+
+            document.getElementById("dicas").innerHTML = dicasHTML;
+
+            // =====================
+            // GRÁFICO EMISSÕES
+            // =====================
+
+            const ctx1 =
+                document.getElementById("graficoEmissoes");
+
+            if (grafico1) {
+                grafico1.destroy();
+            }
+
+            grafico1 = new Chart(ctx1, {
+
+                type: "pie",
+
+                data: {
+
+                    labels:
+                        resultado.grafico_emissoes.labels,
+
+                    datasets: [{
+
+                        data:
+                            resultado.grafico_emissoes.valores
+
+                    }]
+                }
+            });
+
+            // =====================
+            // GRÁFICO CRÉDITOS
+            // =====================
+
+            const ctx2 =
+                document.getElementById("graficoCreditos");
+
+            if (grafico2) {
+                grafico2.destroy();
+            }
+
+            grafico2 = new Chart(ctx2, {
+
+                type: "bar",
+
+                data: {
+
+                    labels:
+                        resultado.grafico_creditos.labels,
+
+                    datasets: [{
+
+                        label: "kg CO₂",
+
+                        data:
+                            resultado.grafico_creditos.valores
+
+                    }]
+                }
+            });
+        }
+
+    </script>
+
 </body>
+
 </html>
